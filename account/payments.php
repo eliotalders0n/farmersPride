@@ -22,7 +22,7 @@ include "../db.php";
                 exp_date='$exp_date' 
                 WHERE user_id = '$_SESSION[uid]'";
 		$run_query = mysqli_query($con,$sql);
-        $_SESSION['name'] = $name;
+        $_SESSION['fullname'] = $name;
         $_SESSION['exp_date'] = $exp_date;
         $_SESSION['card_number'] = $card_number;
         $_SESSION['cvv'] = $cvv;

@@ -9,11 +9,11 @@
     <form action="account/payments.php" method="POST">
     <input type="text" name="uid" id="uid" value="<?php echo $_SESSION[ 'uid' ]; ?>" hidden="true">
     <label>Name on card</label>
-    <input type="text" name="name" id="name" value="<?php echo $_SESSION[ 'name' ] ." ". $_SESSION[ 'last_name' ]; ?>" class="form-control">
+    <input type="text" name="name" id="name" value="<?php echo $_SESSION[ 'fullname']; ?>" class="form-control">
     <label>Card number</label>
-    <input type="text" name="card_number" id="card_number" value="<?php echo $_SESSION[ 'card_number' ]; ?>" class="form-control">
+    <input type="number" name="card_number" id="card_number" value="<?php echo $_SESSION[ 'card_number' ]; ?>" class="form-control">
     <label>CVV</label>
-    <input type="text" name="cvv" id="cvv" value="<?php echo $_SESSION[ 'cvv' ]; ?>" class="form-control">
+    <input type="number" name="cvv" id="cvv" value="<?php echo $_SESSION[ 'cvv' ]; ?>" class="form-control">
     <label>Expiration date</label>
     <input type="date" name="exp_date" id="exp_date" value="<?php echo $_SESSION[ 'exp_date' ]; ?>" class="form-control">
     <br>
@@ -26,14 +26,13 @@
 
     <div class="tabs">
     <h2 style="margin-left: 0px; font-size: 18px;">Mobile Money</h2>
-    <form action="account/accounts.php" method="POST">
+    <form action="account/payments_mobile.php" method="POST">
     <input type="text" name="uid" id="uid" value="<?php echo $_SESSION[ 'uid' ]; ?>" hidden="true">
-    <label>First Name</label>
-    <input type="text" name="first_name" id="first_name" value="<?php echo $_SESSION[ 'name' ]; ?>" class="form-control">
-    <label>Last Name</label>
-    <input type="text" name="last_name" id="last_name" value="<?php echo $_SESSION[ 'last_name' ]; ?>" class="form-control">
+    <label>Name</label>
+    <input type="text" name="name" id="name" value="<?php echo $_SESSION[ 'fullname' ]; ?>" class="form-control" readonly>
     <label>Network</label><br>
-    <select name="network">
+    <select name="Network">
+                <option style="background-color: lightgray;" value="<?php echo $_SESSION[ 'Network' ]; ?>"> -- <?php echo $_SESSION[ 'Network' ]; ?> --</option>
                 <option value="Airtel">Airtel Money</option>
                 <option value="MTN">MTN Mobile Money</option>
     </select><br>

@@ -10,12 +10,25 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
 	$email = mysqli_real_escape_string($con,$_POST["email"]);
 	$password = md5($_POST["password"]);
 	$sql = "SELECT * FROM user_info WHERE email = '$email' AND password = '$password'";
+
 	$run_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($run_query);
+
 	//if user record is available in database then $count will be equal to 1
 	if($count == 1){
 		$row = mysqli_fetch_array($run_query);
 		echo $row;
+		$sql_p = "SELECT * FROM payment_details WHERE user_id = '$row[user_id]'";
+		$run_query_p = mysqli_query($con,$sql_p);
+		$count_p = mysqli_num_rows($run_query_p);	
+		if($count_p == 1){
+			$row_p = mysqli_fetch_array($run_query_p);
+			$_SESSION["card_number"] = $row_p["card_number"];
+			$_SESSION["cvv"] = $row_p["cvv"];
+			$_SESSION["exp_date"] = $row_p["exp_date"];
+			$_SESSION["Network"] = $row_p["Network"];
+			$_SESSION["fullname"] = $row["first_name"] . " " . $row["last_name"];
+		}
 		$_SESSION["uid"] = $row["user_id"];
 		$_SESSION["user_id"] = $row["user_id"];
 		$_SESSION["name"] = $row["first_name"];
